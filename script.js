@@ -3,12 +3,15 @@ function add(a,b){
     return a+b;
 };
 function sub(a,b){
-    return a-b;
+    return a-b
 };
 function mul(a,b){
     return a*b;
 };
 function div(a,b){
+    if ( b == 0){
+        return 'error'
+    }
     return a/b;
 };
 
@@ -43,6 +46,11 @@ for (let i = 0; i< num.length; i++){
 let firstNum;
 let secondNum
 let currentOp = '';
+let decimal = document.querySelector('.decimal')
+decimal.addEventListener('click', ()=>{
+    if(currentNumber.innerText.includes('.')){ return}
+    else {currentNumber.innerText += decimal.innerText}
+})
 for (let i = 0; i< op.length; i++){
     op[i].addEventListener('click', ()=>{
         if (currentOp === ''){
@@ -51,17 +59,30 @@ for (let i = 0; i< op.length; i++){
         previousNumber.innerText = currentNumber.innerText;
         currentNumber.innerText= '';
         return firstNum, currentOp;
+        }else if (currentOp !== ''){
+            firstNum = parseInt(previousNumber.innerText);
+            secondNum = parseInt(currentNumber.innerText);
+            let middleRes = operate(firstNum, secondNum, currentOp);
+            previousNumber.innerText = middleRes;
+            currentNumber.innerText = '';
+            firstNum = middleRes;
+            currentOp = op[i].innerText;
         }
 })
 };
 
 //evaluating op
 equal.addEventListener('click', ()=>{
+    if(currentNumber.innerText === '' || previousNumber.innerText === ''){
+        currentNumber.innerText = 'Error'
+
+    }else {
     secondNum = parseInt(currentNumber.innerText);
     previousText = secondNum;
+    previousNumber.innerText = currentNumber.innerText;
     currentNumber.innerText = operate(firstNum, secondNum, currentOp);
     //reset operand, if not empty can't operate
-    currentOp = '';
+    currentOp = '';}
 });
 
 //clear btn
@@ -72,3 +93,25 @@ clear.addEventListener('click', ()=>{
     currentOp = "";
     secondNum = 0;
 })
+
+//Canc button
+let canc = document.querySelector('.canc');
+canc.addEventListener('click', ()=>{
+    currentNumber.innerText = currentNumber.innerText.slice(0, -1)
+    })
+
+//keyboard listener
+document.addEventListener('keydown', logKey);
+
+function logKey(e) {
+    if (Number.isNaN(parseInt(e.key))){
+      return
+  } else {
+      currentNumber.innerText += e.key;
+    }
+  
+  }
+
+
+
+//document.getElementById('divide').click();

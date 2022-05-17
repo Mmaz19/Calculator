@@ -9,7 +9,7 @@
 body{
     height: 100vh;
     width:auto;
-   background:linear-gradient(208deg, rgba(104,26,179,0.2), rgba(250,84,91,0.2));
+   background:linear-gradient(208deg, rgba(195, 163, 224, 0.rgba(81, 42, 44, 0.2)0.2));
 }
 .container{
     height: 100vh;;
@@ -23,12 +23,14 @@ body{
     grid-template-rows: repeat(7,1fr);
     font-size: 2rem;
     align-content: center;
-    width: 20%;
-    height: 50%;
+    width: 390px;
+    height: 536px;
 }
 .calculator>div{
     text-align: center;
-    border: 2px solid #000 
+    border: 1px solid #493838a1;
+    align-self: center;
+    padding: 20px;
 }
 .span-2{
     grid-column: 1 /  span 2;
@@ -39,4 +41,39 @@ div>.current-number{
     text-align: right;
     padding-right: 5px;
 }
-
+.number {
+    background-color: #fff;
+}
+.operand,
+.decimal {
+    background-color: #f7c260;
+}
+.clear, .equal, .canc {
+    background-color: #f0f8ff;
+}
+.current-number {
+    padding: 25px 5px 25px 0px !important;
+    background-color: #f6ffff;
+    border-top: none!important;
+    height: 90px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+.previous-number {
+    padding-bottom: 5px!important;
+    border-bottom: none!important;
+    background-color: #f0fcfc;
+    font-size: 1rem;
+    height: 40px;
+}
+.border {
+    width: 410px;
+    height: 580px;
+    background-color: #000;
+    position: absolute;
+    z-index: -999;
+    border-bottom-left-radius: 2%;
+    border-bottom-right-radius: 2%;
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
+}
